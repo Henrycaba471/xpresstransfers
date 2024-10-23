@@ -111,4 +111,46 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    document.getElementById('form-login').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const userData = {
+            username: form.elements.username.value,
+            password: form.elements.password.value
+        }
+
+        try {
+            const response = await fetch('http://localhost:5000/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            });
+
+            const result = await response.json();
+            console.log(result);
+            if (result.status === 200) {
+                localStorage.setItem('authToken', result.token);
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('Usuario y/o contraseña incorrectos');
+            }
+
+        } catch (error) {
+            console.log(error);
+
+        }
+    });
+
+
+    /*
+        const btnLogin = document.getElementById('btn-login');
+    
+        btnLogin.addEventListener('click', (e) =>{
+            e.preventDefault()
+            const username = document.getElementById('username');
+            console.log(username.value);
+        });
+        */
 });

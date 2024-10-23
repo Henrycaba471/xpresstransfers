@@ -1,0 +1,165 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #ecfecf;
+}
+main{
+    max-width: 1500px;
+    margin: 0 auto;
+}
+main .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 30px;
+    flex-wrap: wrap;
+    background-color: #ecfecf;
+    position: sticky;
+    top: 0;
+    border-bottom: 5px solid #194029;
+}
+main .header .logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #194029;
+}
+main .header .user{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-transform: capitalize;
+    font-size: 18px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #194029;
+}
+main .header .user img {
+    border-radius: 50%;
+    border: 2px solid #194029c2;
+}
+main .header .user span{
+    font-size: 15px;
+    color: #6a6b6aa6;
+}
+main .header .user button{
+    background: transparent;
+    outline: none;
+    border: none;
+    color: #6f706dcc;
+    font-size: 25px;
+    transform: rotate(-90deg);
+}
+main .header .info {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #194029;
+}
+main .header .info #sucursal{
+    padding: 5px;
+    font-size: 15px;
+}
+
+main .content-body {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: calc(100vh - 170px);
+}
+
+main .content-body .options{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 18px;
+    background-color: #194029;
+    padding-right: 15px;
+}
+main .content-body .operations{
+    flex: 1;
+    padding: 20px;
+}
+main .content-body .options ul li {
+    list-style: none;
+    padding: 5px;
+    margin: 5px 0;
+    border-bottom: 2px solid transparent;
+    margin-left: 0;
+    color: #ecfecf;
+}
+main .content-body .options ul li:hover {
+    border-bottom: 2px solid #ecfecf;
+    color: #ecfecf;
+    cursor: pointer;
+}
+.send-info{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #194029;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+form fieldset {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+form fieldset legend {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+form fieldset label {
+    font-size: 18px;
+}
+form fieldset input, select {
+    border: 2px solid #194029;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+    text-transform: capitalize;
+    width: 250px;
+}
+form fieldset span{
+    color: #c20202
+}
+
+form button{
+    align-self: center;
+    font-size: 20px;
+    margin: 15px 0;
+    border-radius: 5px;
+    outline: none;
+    padding: 5px;
+    border: 2px solid #194029;
+    color: #ffffff;
+    background: #194029;
+    transition: all 0.5s ease-out;
+}
+form button:hover{
+    color: #194029;
+    border: 2px solid #194029;
+    background: #ffffff;
+}
+
+.footer{
+    font-size: 16px;
+    background: #dbdbdb;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-top: 3px solid #194029;
+    color: #194029;
+}
+
+.footer .social-media img{
+    margin: 0 8px;
+}

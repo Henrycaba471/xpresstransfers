@@ -561,3 +561,9 @@ p {
 .login-active{
     display: block;
 }
+.login button:hover {
+    cursor: pointer;
+    border: 2px solid #9ACB56;
+    background: #194029;
+    color: #9ACB56;
+}
