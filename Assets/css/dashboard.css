@@ -153,6 +153,7 @@ form button:hover{
     color: #194029;
     border: 2px solid #194029;
     background: #ffffff;
+    cursor: pointer;
 }
 
 .footer{

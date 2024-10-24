@@ -119,8 +119,10 @@ document.addEventListener('DOMContentLoaded', () => {
             password: form.elements.password.value
         }
 
+        //local http://localhost:5000/api/users/login
+        //prod https://backend-transfers.onrender.com/api/users/login
         try {
-            const response = await fetch('https://backend-transfers.onrender.com/api/users/login', {
+            const response = await fetch('http://localhost:5000/api/users/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
