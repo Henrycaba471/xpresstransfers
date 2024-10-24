@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
         try {
             //prod https://backend-transfers.onrender.com/api/users/dashboard
-            const response = await fetch('http://localhost:5000/api/users/dashboard', {
+            const response = await fetch('https://backend-transfers.onrender.com/api/users/dashboard', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 document.getElementById('send-transfer').addEventListener('click', async () => {
                     //prod https://backend-transfers.onrender.com/api/users/send-transf
-                    const response = await fetch('http://localhost:5000/api/users/send-transf', {
+                    const response = await fetch('https://backend-transfers.onrender.com/api/users/send-transf', {
                         method: 'GET',
                         headers: {
                             'Authorization': 'Bearer ' + token,
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             try {
-                const response = await fetch('http://localhost:5000/api/transfers/send-transfer', {
+                const response = await fetch('https://backend-transfers.onrender.com/api/transfers/send-transfer', {
                     method: 'POST',
                     headers: {
                         'Authorization': 'Bearer ' + token,
