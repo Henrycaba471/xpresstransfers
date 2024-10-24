@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch('http://localhost:5000/api/users/login', {
+            const response = await fetch('https://backend-transfers.onrender.com/api/users/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -146,7 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /*
         const btnLogin = document.getElementById('btn-login');
-    
         btnLogin.addEventListener('click', (e) =>{
             e.preventDefault()
             const username = document.getElementById('username');

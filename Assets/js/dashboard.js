@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         window.location.href = 'index.html'; // Redirigir si no hay token
     } else {
         try {
-            const response = await fetch('http://localhost:5000/api/users/dashboard', {
+            const response = await fetch('https://backend-transfers.onrender.com/api/users/dashboard', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 document.getElementById('sucursal').textContent = 'Sucursal: 0001';
 
                 document.getElementById('send-transfer').addEventListener('click', async () =>{
-                    const response = await fetch('http://localhost:5000/api/users/send-transf', {
+                    const response = await fetch('https://backend-transfers.onrender.com/api/users/send-transf', {
                         method: 'GET',
                         headers: {
                             'Authorization': 'Bearer ' + token,
