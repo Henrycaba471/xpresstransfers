@@ -117,13 +117,21 @@ form fieldset legend {
 form fieldset label {
     font-size: 18px;
 }
-form fieldset input, select {
+form fieldset input{
     border: 2px solid #194029;
     border-radius: 5px;
     padding: 5px;
-    font-size: 16px;
+    font-size: 18px;
     text-transform: capitalize;
-    width: 250px;
+    width: 260px;
+}
+select {
+    border: 2px solid #194029;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 18px;
+    text-transform: capitalize;
+    width: 180px;
 }
 form fieldset span{
     color: #c20202
