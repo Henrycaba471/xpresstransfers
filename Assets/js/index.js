@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const result = await response.json();
-            console.log(result);
+            //console.log(result);
             if (result.status === 200) {
                 localStorage.setItem('authToken', result.token);
                 window.location.href = 'dashboard.html';
@@ -139,7 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.log(error);
-
         }
     });
 

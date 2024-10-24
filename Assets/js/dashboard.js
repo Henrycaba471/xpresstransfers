@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (data.status === 200) {
                 // Mostrar los datos del usuario en el dashboard
-                document.getElementById('profile').src = 'Assets/imgs/hombre-2.jpeg'
+                document.getElementById('profile').src = `Assets/imgs/${data.user.gender}-2.jpeg`
                 document.getElementById('user').textContent = `${data.user.name} ${data.user.lastname.split(' ')[0]}`;
                 document.getElementById('rol').textContent = 'Cajero';
                 document.getElementById('date').textContent = new Date().toLocaleString();
@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                         }
                     });
                     const data = await response.json();
-                    console.log(data);
                     //document.querySelector('.send-info').innerHTML = '';
                     document.querySelector('.operations').innerHTML = data.form;
                 });
@@ -48,4 +47,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log(error);
         }
     }
+
+    document.getElementById('logout').addEventListener('click', (e) => {
+        localStorage.removeItem('authToken');
+        window.location.href = 'index.html'; // Redirigir si no hay token
+    });
 });
