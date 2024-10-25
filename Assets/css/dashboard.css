@@ -14,36 +14,41 @@ main .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 30px;
+    padding: 3px 30px;
     flex-wrap: wrap;
     background-color: #ecfecf;
     position: sticky;
     top: 0;
-    border-bottom: 5px solid #194029;
+    border-bottom: 3px solid #194029;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
 }
 main .header .logo {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #194029;
+}
+main .header .logo h1{
+    font-size: 15px;
+    text-transform: uppercase;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 main .header .user{
     display: flex;
     align-items: center;
     gap: 15px;
     text-transform: capitalize;
-    font-size: 18px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
     color: #194029;
 }
 main .header .user img {
     border-radius: 50%;
-    border: 2px solid #194029c2;
+    border: 1px solid #19402994;
 }
 main .header .user span{
-    font-size: 15px;
+    font-size: 14px;
     color: #6a6b6aa6;
 }
 main .header .user button{
@@ -55,7 +60,6 @@ main .header .user button{
     transform: rotate(-90deg);
 }
 main .header .info {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #194029;
 }
 main .header .info #sucursal{
@@ -67,7 +71,7 @@ main .content-body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    min-height: calc(100vh - 170px);
+    min-height: calc(100vh - 100px);
 }
 
 main .content-body .options{
@@ -111,28 +115,38 @@ form fieldset {
     gap: 10px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+form fieldset .cliente-sending{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
 form fieldset legend {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 form fieldset label {
+    display: inline-block;
     font-size: 18px;
+    margin-top: 15px;
 }
 form fieldset input{
-    border: 2px solid #194029;
+    border: 1px solid #194029;
+    border-radius: 8px;
+    padding: 5px;
+    font-size: 18px;
+    text-transform: capitalize;
+    width: 260px;
+    margin-right: 20px;
+}
+select {
+    border: 1px solid #194029;
     border-radius: 5px;
     padding: 5px;
     font-size: 18px;
     text-transform: capitalize;
     width: 260px;
 }
-select {
-    border: 2px solid #194029;
-    border-radius: 5px;
-    padding: 5px;
-    font-size: 18px;
-    text-transform: capitalize;
-    width: 180px;
-}
+
 form fieldset span{
     color: #c20202
 }

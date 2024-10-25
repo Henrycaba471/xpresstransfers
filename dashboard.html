@@ -13,15 +13,15 @@
     <main>
         <header class="header">
             <div class="logo">
-                <img src="Assets/imgs/lgogo.png" alt="logo" width="80">
-                <h1>XpressTransfers</h1>
+                <img src="Assets/imgs/lgogo.png" alt="logo" width="50">
+                <h1>xpress-Transfers</h1>
             </div>
             <div class="info">
                 <p id="date"></p>
                 <p id="sucursal"></p>
             </div>
             <div class="user">
-                <img alt="profile" id="profile" width="60">
+                <img alt="profile" id="profile" width="30">
                 <div>
                     <p id="user"></p>
                     <span id="rol"></span>
@@ -41,7 +41,9 @@
                 </ul>
             </aside>
             <section class="operations">
-                <p class="send-info">En Xpress Transfers, somos una casa de cambios dedicada a ofrecer servicios de cambio de divisas de manera rápida, segura y eficiente. Con años de experiencia en el sector financiero</p>
+                <p class="send-info">En Xpress Transfers, somos una casa de cambios dedicada a ofrecer servicios de
+                    cambio de divisas de manera rápida, segura y eficiente. Con años de experiencia en el sector
+                    financiero</p>
             </section>
         </div>
         <footer class="footer">
@@ -56,7 +58,33 @@
             </div>
         </footer>
     </main>
+    <script>
+        function soloLetrasYEspacios(input) {
+            input.value = input.value.replace(/[^a-zA-Z\s]/g, '');
+        }
+
+        function formatAccount(input) {
+
+            input.value = input.value.replace(/[^0-9\-]/g, ''); // Solo números y guiones
+            input.value = input.value.replace(/-/g, '');        // Elimina guiones previos
+
+            const matches = input.value.match(/.{1,4}/g);
+            if (matches) {
+                input.value = matches.join('-');
+            }
+        }
+
+        function separardorMiles(input) {
+            if (input.value === '') {
+                return;
+            }
+            input.value = input.value.replace(/[^0-9]/g, '');
+            input.value = Number(input.value).toLocaleString('es-CO');
+        }
+
+    </script>
     <script src="Assets/js/dashboard.js"></script>
 </body>
 
 </html>
+/
