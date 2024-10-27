@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body{
-    background-color: #ecfecf;
+    background-color: #dbdbdb;
 }
 main{
     max-width: 1500px;
@@ -71,7 +71,7 @@ main .content-body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 125px);
 }
 
 main .content-body .options{
@@ -91,6 +91,9 @@ main .content-body .options ul li {
     border-bottom: 2px solid transparent;
     margin-left: 0;
     color: #ecfecf;
+}
+main .options ul a{
+    text-decoration: none;
 }
 main .content-body .options ul li:hover {
     border-bottom: 2px solid #ecfecf;
@@ -169,6 +172,83 @@ form button:hover{
     background: #ffffff;
     cursor: pointer;
 }
+/*Para consulta de transfers*/
+form h2{
+    color: #194029;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 7px 0;
+}
+form p{
+    color: #194029;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+}
+form .mode-consult{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 7px;
+    gap: 5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+}
+form .mode-consult input{
+    font-size: 16px;
+    border: 1px solid #194029;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 18px;
+    text-transform: capitalize;
+    width: 260px;
+    margin-right: 20px;
+}
+input:focus {
+    outline: 2px solid #194029b6; /* Outline azul al hacer foco */
+}
+select:focus {
+    outline: 2px solid #194029b6; /* Outline azul al hacer foco */
+}
+/*Para resiltados dela busqueda*/
+.data-transfers-get{
+    color: #194029;
+}
+.data-transfers-get h1{
+    padding: 5px;
+}
+table {
+    width: 100%; /* Ancho de la tabla */
+    border-collapse: collapse; /* Para quitar el espacio entre celdas */
+}
+
+table th, table td {
+    border: 1px solid #ecfecf; /* Borde de las celdas */
+    padding: 8px; /* Espaciado interno */
+    text-align: center; /* Alineación del texto */
+    text-transform: capitalize;
+    font-family: 'Times New Roman', Times, serif;
+}
+table td img:hover{
+    border: 2px solid #1940299a;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+table th {
+    background-color: #194029; /* Color de fondo de los encabezados */
+    color: #ecfecf; /* Color del texto de los encabezados */
+    text-align: center;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Color de fondo para filas pares */
+}
+
+table tr:hover {
+    background-color: #19402969; /* Color de fondo al pasar el ratón */
+    color: #070606;
+}
+
 
 .footer{
     font-size: 16px;

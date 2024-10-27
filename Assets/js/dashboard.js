@@ -40,12 +40,39 @@ document.addEventListener('DOMContentLoaded', async () => {
                     //document.querySelector('.send-info').innerHTML = '';
                     document.querySelector('.operations').innerHTML = data.form;
                 });
+
+                document.getElementById('search-trasfer').addEventListener('click', async () => {
+                    //prod https://backend-transfers.onrender.com/api/users/send-transf
+                    const response = await fetch('https://backend-transfers.onrender.com/api/users/search-transfers', {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': 'Bearer ' + token,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    const data = await response.json();
+                    //document.querySelector('.send-info').innerHTML = '';
+                    document.querySelector('.operations').innerHTML = data.form;
+                });
+
+                document.getElementById('update-transfer').addEventListener('click', async () => {
+                    //prod https://backend-transfers.onrender.com/api/users/send-transf
+                    const response = await fetch('https://backend-transfers.onrender.com/api/transfers/update-transfer', {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': 'Bearer ' + token,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    const data = await response.json();
+                    //document.querySelector('.send-info').innerHTML = '';
+                    document.querySelector('.operations').innerHTML = data.form;
+                });
                 // Muestra otros datos como prefieras
             } else {
                 //alert('La conexion se ha cerrado');
                 window.location.href = 'index.html'; // Redirigir si no hay token
             }
-
         } catch (error) {
             console.log(error);
         }
@@ -71,7 +98,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return alert('Los campos con * son obligatorios');
             }
 
-            const confirmData = confirm(`DATOS DE LA TRANSACCIÓN\n____________________________________________________________________\nBANCO: ${dataTransfer.bankEntity.toUpperCase()} - ${dataTransfer.accountType.toUpperCase()}\nN° CUENTA: ${dataTransfer.account}\nDESTINATARIO: ${dataTransfer.nameClient.toUpperCase()}\nDNI: ${dataTransfer.documentClient}\nVALOR: Bs ${dataTransfer.cashBs}\n____________________________________________________________________
+            const confirmData = confirm(`DATOS DE LA TRANSACCIÓN\n_______________________________________________________\nBANCO: ${dataTransfer.bankEntity.toUpperCase()} - ${dataTransfer.accountType.toUpperCase()}\nN° CUENTA: ${dataTransfer.account}\nDESTINATARIO: ${dataTransfer.nameClient.toUpperCase()}\nDNI: ${dataTransfer.documentClient}\nVALOR: Bs ${dataTransfer.cashBs}\n_______________________________________________________
             `);
             if (confirmData) {
                 //prod https://backend-transfers.onrender.com/api/transfers/send-transfer
@@ -147,6 +174,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     dataTransfer.documentClient = formSend.elements.documentClient.value = '';
                     dataTransfer.cashBs = formSend.elements.cashBs.value = '';
 
+                    location.reload();
 
                 } catch (error) {
                     console.log(error);
@@ -156,12 +184,146 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
 
-        //console.log('Btn send');
+        if (e.target.matches('#btn-search')) {
+            e.preventDefault();
+            const formSearch = document.querySelector('.form-search');
+
+            const dataSearch = {
+                ref: formSearch.elements.consult.value,
+                search: formSearch.elements.searching.value,
+                date: formSearch.elements.date.value
+            }
+
+            if (!dataSearch.search && !dataSearch.date) {
+                return alert('Debes seleccionar una fecha o valor para buscar');
+            }
+
+            if (new Date(dataSearch.date) < new Date() || !dataSearch.date) {
+                try {
+                    const response = await fetch('https://backend-transfers.onrender.com/api/transfers/ver-transfers', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Bearer ' + token,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(dataSearch)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+
+                    const data = await response.json();
+                    const searchData = document.querySelector('.data-transfers-get');
+
+                    if (!data.data) {
+                        return searchData.innerHTML = `<h1>Resultados de la búsqueda</h1><table>
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Dni</th>
+                                <th>Banco</th>
+                                <th>Cuenta</th>
+                                <th>Valor Bs</th>
+                            </tr>
+                        </thead>
+                        <tbody><tr><td colspan="5"> No se encontró ningún resultado</td></tr></tbody></table>`;
+                    }
+
+                    if (data.data.length > 0) {
+                        let html = `
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Cliente</th>
+                                    <th>Dni</th>
+                                    <th>Banco</th>
+                                    <th>Cuenta</th>
+                                    <th>Valor Bs</th>
+                                    <th>Reimprimir</th>
+                                </tr>
+                            </thead>
+                            <tbody>`;
+
+                        data.data.forEach((client) => {
+                            html += `
+                            <tr>
+                                <td>${client.nameClient}</td>
+                                <td>${client.documentClient}</td>
+                                <td>${client.bankEntity} - ${client.accountType}</td>
+                                <td>${client.account}</td>
+                                <td>Bs ${client.cashBs}</td>
+                                <td><img class="btn-print" src="Assets/imgs/imprimir.png" alt="Reimprimir" width="30" title="Reimprimir" /></td>
+                            </tr>`;
+                        });
+
+                        html += `
+                            </tbody>
+                        </table>`;
+
+                        searchData.innerHTML = `<div>
+                            <h1>Resultados de la búsqueda</h1>
+                            ${html}
+                        </div>`;
+                    } else {
+                        searchData.innerHTML = `<h1>Resultados de la búsqueda</h1><table>
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Dni</th>
+                                <th>Banco</th>
+                                <th>Cuenta</th>
+                                <th>Valor Bs</th>
+                            </tr>
+                        </thead>
+                        <tbody><tr><td colspan="5"> No se encontró ningún resultado</td></tr></tbody></table>`;
+                    }
+
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                    alert('Ocurrió un error al buscar los datos. Por favor, inténtelo de nuevo más tarde.');
+                }
+            } else {
+                alert('La fecha debe ser menor a la actual');
+            }
+        }
+
+        if (e.target.matches('#btn-update')) {
+            e.preventDefault();
+            console.log('Updating....');
+            const formUpdate = document.querySelector('.form-update');
+            const transfToUpdate = { fact: formUpdate.elements.updReference.value };
+
+            try {
+                const response = await fetch('https://backend-transfers.onrender.com/api/transfers/update', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(transfToUpdate)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+
+                const data = await response.json();
+                console.log(data);
+                
+                const searchData = document.querySelector('.data-transfers-get');
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
     });
+
 
     document.getElementById('logout').addEventListener('click', (e) => {
         localStorage.removeItem('authToken');
         window.location.href = 'index.html'; // Redirigir si no hay token
+        location.reload();
     });
 });
 

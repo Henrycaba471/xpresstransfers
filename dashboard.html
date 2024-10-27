@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Assets/css/dashboard.css">
-    <link rel="shortcut icon" href="Assets/imgs/lgogo.png" type="image/x-icon">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Assets/css/dashboard.css" />
+    <link rel="shortcut icon" href="Assets/imgs/lgogo.png" type="image/x-icon" />
     <title>XpressTransfers | Home</title>
 </head>
 
@@ -13,7 +13,7 @@
     <main>
         <header class="header">
             <div class="logo">
-                <img src="Assets/imgs/lgogo.png" alt="logo" width="50">
+                <img src="Assets/imgs/lgogo.png" alt="logo" width="50" />
                 <h1>xpress-Transfers</h1>
             </div>
             <div class="info">
@@ -21,7 +21,7 @@
                 <p id="sucursal"></p>
             </div>
             <div class="user">
-                <img alt="profile" id="profile" width="30">
+                <img alt="profile" id="profile" width="30" />
                 <div>
                     <p id="user"></p>
                     <span id="rol"></span>
@@ -32,18 +32,24 @@
         <div class="content-body">
             <aside class="options">
                 <ul>
+                    <a href="">
+                        <li>&#9654; Inicio</li>
+                    </a>
                     <li id="send-transfer">&#9654; Enviar Transferencia</li>
-                    <li>&#9654; Consultar Transferencias</li>
-                    <li>&#9654; Corregir Datos</li>
+                    <li id="search-trasfer">&#9654; Consultar Transferencias</li>
+                    <li id="update-transfer">&#9654; Corregir Datos</li>
                     <li>&#9654; Agregar Nota</li>
                     <li>&#9654; Anular Transferencia</li>
+                    <li>&#9654; Reportes</li>
                     <li id="logout">Salir &#9632;</li>
                 </ul>
             </aside>
             <section class="operations">
-                <p class="send-info">En Xpress Transfers, somos una casa de cambios dedicada a ofrecer servicios de
-                    cambio de divisas de manera rápida, segura y eficiente. Con años de experiencia en el sector
-                    financiero</p>
+                <p class="send-info">
+                    En Xpress Transfers, somos una casa de cambios dedicada a ofrecer
+                    servicios de cambio de divisas de manera rápida, segura y eficiente.
+                    Con años de experiencia en el sector financiero
+                </p>
             </section>
         </div>
         <footer class="footer">
@@ -51,37 +57,38 @@
                 <p>Henry Cañizares 🧑🏻‍💻</p>
             </div>
             <div class="social-media">
-                <img src="Assets/imgs/github.png" alt="" width="25">
-                <img src="Assets/imgs/facebook.png" alt="" width="25">
-                <img src="Assets/imgs/whatsapp.png" alt="" width="25">
-                <img src="Assets/imgs/gmail.png" alt="" width="25">
+                <img src="Assets/imgs/github.png" alt="" width="25" />
+                <img src="Assets/imgs/facebook.png" alt="" width="25" />
+                <img src="Assets/imgs/whatsapp.png" alt="" width="25" />
+                <img src="Assets/imgs/gmail.png" alt="" width="25" />
             </div>
         </footer>
     </main>
     <script>
         function soloLetrasYEspacios(input) {
-            input.value = input.value.replace(/[^a-zA-Z\s]/g, '');
+            input.value = input.value.replace(/[^a-zA-Z\s]/g, "");
         }
 
         function formatAccount(input) {
-
-            input.value = input.value.replace(/[^0-9\-]/g, ''); // Solo números y guiones
-            input.value = input.value.replace(/-/g, '');        // Elimina guiones previos
+            input.value = input.value.replace(/[^0-9\-]/g, ""); // Solo números y guiones
+            input.value = input.value.replace(/-/g, ""); // Elimina guiones previos
 
             const matches = input.value.match(/.{1,4}/g);
             if (matches) {
-                input.value = matches.join('-');
+                input.value = matches.join("-");
             }
         }
 
         function separardorMiles(input) {
-            if (input.value === '') {
+            if (input.value === "") {
                 return;
             }
-            input.value = input.value.replace(/[^0-9]/g, '');
-            input.value = Number(input.value).toLocaleString('es-CO');
+            input.value = input.value.replace(/[^0-9]/g, "");
+            input.value = Number(input.value).toLocaleString("es-CO");
         }
-
+        function soloNumeros(input) {
+            input.value = input.value.replace(/[^0-9]/g, "");
+        }
     </script>
     <script src="Assets/js/dashboard.js"></script>
 </body>
