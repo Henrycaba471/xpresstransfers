@@ -1,15 +1,19 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-body{
+
+body {
     background-color: #dbdbdb;
 }
-main{
+
+main {
     max-width: 1500px;
     margin: 0 auto;
+    position: relative;
 }
+
 main .header {
     display: flex;
     justify-content: space-between;
@@ -23,6 +27,7 @@ main .header {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
 }
+
 main .header .logo {
     display: flex;
     flex-direction: row;
@@ -30,12 +35,14 @@ main .header .logo {
     align-items: center;
     color: #194029;
 }
-main .header .logo h1{
+
+main .header .logo h1 {
     font-size: 15px;
     text-transform: uppercase;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-main .header .user{
+
+main .header .user {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -43,15 +50,21 @@ main .header .user{
     font-size: 15px;
     color: #194029;
 }
+main .header .user:hover {
+    cursor: pointer;
+    color: #194029;
+}
 main .header .user img {
     border-radius: 50%;
     border: 1px solid #19402994;
 }
-main .header .user span{
+
+main .header .user span {
     font-size: 14px;
     color: #6a6b6aa6;
 }
-main .header .user button{
+
+main .header .user button {
     background: transparent;
     outline: none;
     border: none;
@@ -59,10 +72,15 @@ main .header .user button{
     font-size: 25px;
     transform: rotate(-90deg);
 }
+main .header .user button:hover {
+    cursor: pointer;
+    color: #194029;
+}
 main .header .info {
     color: #194029;
 }
-main .header .info #sucursal{
+
+main .header .info #sucursal {
     padding: 5px;
     font-size: 15px;
 }
@@ -74,16 +92,18 @@ main .content-body {
     min-height: calc(100vh - 125px);
 }
 
-main .content-body .options{
+main .content-body .options {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 18px;
     background-color: #194029;
     padding-right: 15px;
 }
-main .content-body .operations{
+
+main .content-body .operations {
     flex: 1;
     padding: 20px;
 }
+
 main .content-body .options ul li {
     list-style: none;
     padding: 5px;
@@ -92,22 +112,27 @@ main .content-body .options ul li {
     margin-left: 0;
     color: #ecfecf;
 }
-main .options ul a{
+
+main .options ul a {
     text-decoration: none;
 }
+
 main .content-body .options ul li:hover {
     border-bottom: 2px solid #ecfecf;
     color: #ecfecf;
     cursor: pointer;
 }
-.send-info{
+
+.send-info {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #194029;
 }
-form{
+
+form {
     display: flex;
     flex-direction: column;
 }
+
 form fieldset {
     padding: 10px 0;
     display: flex;
@@ -118,21 +143,25 @@ form fieldset {
     gap: 10px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-form fieldset .cliente-sending{
+
+form fieldset .cliente-sending {
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
 }
+
 form fieldset legend {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
 form fieldset label {
     display: inline-block;
     font-size: 18px;
     margin-top: 15px;
 }
-form fieldset input{
+
+form fieldset input {
     border: 1px solid #194029;
     border-radius: 8px;
     padding: 5px;
@@ -141,6 +170,7 @@ form fieldset input{
     width: 260px;
     margin-right: 20px;
 }
+
 select {
     border: 1px solid #194029;
     border-radius: 5px;
@@ -150,11 +180,25 @@ select {
     width: 260px;
 }
 
-form fieldset span{
+form fieldset .cliente-sending .textarea {
+    display: flex;
+    flex-direction: column;
+}
+
+form fieldset .cliente-sending .textarea textarea {
+    border-radius: 7px;
+    padding: 5px;
+    font-size: 18px;
+    width: 260px;
+    resize: none;
+    text-transform: capitalize;
+}
+
+form fieldset span {
     color: #c20202
 }
 
-form button{
+form button {
     align-self: center;
     font-size: 20px;
     margin: 15px 0;
@@ -166,25 +210,29 @@ form button{
     background: #194029;
     transition: all 0.5s ease-out;
 }
-form button:hover{
+
+form button:hover {
     color: #194029;
     border: 2px solid #194029;
     background: #ffffff;
     cursor: pointer;
 }
+
 /*Para consulta de transfers*/
-form h2{
+form h2 {
     color: #194029;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     padding: 7px 0;
 }
-form p{
+
+form p {
     color: #194029;
     font-weight: bold;
     font-size: 16px;
     font-family: 'Times New Roman', Times, serif;
 }
-form .mode-consult{
+
+form .mode-consult {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -193,7 +241,8 @@ form .mode-consult{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 18px;
 }
-form .mode-consult input{
+
+form .mode-consult input {
     font-size: 16px;
     border: 1px solid #194029;
     border-radius: 5px;
@@ -203,54 +252,113 @@ form .mode-consult input{
     width: 260px;
     margin-right: 20px;
 }
-input:focus {
-    outline: 2px solid #194029b6; /* Outline azul al hacer foco */
-}
-select:focus {
-    outline: 2px solid #194029b6; /* Outline azul al hacer foco */
-}
-/*Para resiltados dela busqueda*/
-.data-transfers-get{
-    color: #194029;
-}
-.data-transfers-get h1{
-    padding: 5px;
-}
-table {
-    width: 100%; /* Ancho de la tabla */
-    border-collapse: collapse; /* Para quitar el espacio entre celdas */
+
+input:focus,
+textarea:focus {
+    outline: 1px solid #194029af;
+    /* Outline azul al hacer foco */
+    box-shadow: 3px 3px 3px 3px #19402986;
 }
 
-table th, table td {
-    border: 1px solid #ecfecf; /* Borde de las celdas */
-    padding: 8px; /* Espaciado interno */
-    text-align: center; /* Alineación del texto */
+select:focus {
+    outline: 1px solid #194029b6;
+    /* Outline azul al hacer foco */
+    box-shadow: 3px 3px 3px 3px #19402986;
+}
+
+/*Para resiltados dela busqueda*/
+.data-transfers-get {
+    color: #194029;
+}
+
+.data-transfers-get h1 {
+    padding: 5px;
+}
+
+table {
+    width: 100%;
+    /* Ancho de la tabla */
+    border-collapse: collapse;
+    /* Para quitar el espacio entre celdas */
+}
+
+table th,
+table td {
+    border: 1px solid #ecfecf;
+    /* Borde de las celdas */
+    padding: 8px;
+    /* Espaciado interno */
+    text-align: center;
+    /* Alineación del texto */
     text-transform: capitalize;
     font-family: 'Times New Roman', Times, serif;
 }
-table td img:hover{
+
+table td img:hover {
     border: 2px solid #1940299a;
     border-radius: 50%;
     cursor: pointer;
 }
 
 table th {
-    background-color: #194029; /* Color de fondo de los encabezados */
-    color: #ecfecf; /* Color del texto de los encabezados */
+    background-color: #194029;
+    /* Color de fondo de los encabezados */
+    color: #ecfecf;
+    /* Color del texto de los encabezados */
     text-align: center;
 }
 
+table .rechazo:hover {
+    background-color: rgba(209, 12, 12, 0.692);
+}
+
 table tr:nth-child(even) {
-    background-color: #f2f2f2; /* Color de fondo para filas pares */
+    background-color: #f2f2f2;
+    /* Color de fondo para filas pares */
 }
 
 table tr:hover {
-    background-color: #19402969; /* Color de fondo al pasar el ratón */
+    background-color: #19402969;
+    /* Color de fondo al pasar el ratón */
     color: #070606;
 }
 
+/*Opciones de usuario*/
+.opciones-user {
+    display: none;
+    position: absolute;
+    top: 52px;
+    right: 10px;
+    width: 270px;
+    background: #ecfecf;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.optiones-user-active{
+    display: block;
+}
 
-.footer{
+.opciones-user ul li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #194029;
+    margin: 7px;
+    border-radius: 20px;
+}
+.opciones-user ul li img{
+    margin: 0 5px;
+}
+.opciones-user ul li:hover {
+    background-color: #194029;
+    color: #efefef;
+    cursor: pointer;
+}
+
+
+.footer {
     font-size: 16px;
     background: #dbdbdb;
     display: flex;
@@ -263,6 +371,6 @@ table tr:hover {
     color: #194029;
 }
 
-.footer .social-media img{
+.footer .social-media img {
     margin: 0 8px;
 }

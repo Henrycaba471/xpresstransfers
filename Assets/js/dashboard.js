@@ -1,14 +1,30 @@
-document.addEventListener('DOMContentLoaded', async () => {
+
+let linkToAvalible = 'https://backend-transfers.onrender.com'
+//let linkToAvalible = 'http://localhost:5000'
+
+document.addEventListener('DOMContentLoaded', async (e) => {
+
+    const btnUserOptions = document.getElementById('profile-options');
+    const optionsUser = document.querySelector('.opciones-user');
+
+    btnUserOptions.addEventListener('click', () => {
+        optionsUser.classList.toggle('optiones-user-active');
+    })
+
+
     const token = localStorage.getItem('authToken');
+
     //console.log(token);
 
     if (!token) {
         window.location.href = 'index.html'; // Redirigir si no hay token
     } else {
         try {
+
             //prod https://backend-transfers.onrender.com/api/users/dashboard
             //local http://localhost:5000/api/users/
-            const response = await fetch('https://backend-transfers.onrender.com/api/users/dashboard', {
+
+            const response = await fetch(`${linkToAvalible}/api/users/dashboard`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -21,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (data.status === 200) {
                 // Mostrar los datos del usuario en el dashboard
-                document.getElementById('profile').src = `Assets/imgs/${data.user.gender}-2.jpeg`
+                document.getElementById('profile').src = `Assets/imgs/${data.user.gender}.png`
                 document.getElementById('user').textContent = `${data.user.name} ${data.user.lastname.split(' ')[0]}`;
                 (data.user.gender === 'mujer') ? document.getElementById('rol').textContent = 'Cajera' : document.getElementById('rol').textContent = 'Cajero';
                 document.getElementById('date').textContent = new Date().toLocaleString();
@@ -29,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 document.getElementById('send-transfer').addEventListener('click', async () => {
                     //prod https://backend-transfers.onrender.com/api/users/send-transf
-                    const response = await fetch('https://backend-transfers.onrender.com/api/users/send-transf', {
+                    const response = await fetch(`${linkToAvalible}/api/users/send-transf`, {
                         method: 'GET',
                         headers: {
                             'Authorization': 'Bearer ' + token,
@@ -43,7 +59,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 document.getElementById('search-trasfer').addEventListener('click', async () => {
                     //prod https://backend-transfers.onrender.com/api/users/send-transf
-                    const response = await fetch('https://backend-transfers.onrender.com/api/users/search-transfers', {
+                    const response = await fetch(`${linkToAvalible}/api/users/search-transfers`, {
                         method: 'GET',
                         headers: {
                             'Authorization': 'Bearer ' + token,
@@ -57,7 +73,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 document.getElementById('update-transfer').addEventListener('click', async () => {
                     //prod https://backend-transfers.onrender.com/api/users/send-transf
-                    const response = await fetch('https://backend-transfers.onrender.com/api/transfers/update-transfer', {
+                    const response = await fetch(`${linkToAvalible}/api/transfers/update-transfer`, {
                         method: 'GET',
                         headers: {
                             'Authorization': 'Bearer ' + token,
@@ -103,7 +119,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (confirmData) {
                 //prod https://backend-transfers.onrender.com/api/transfers/send-transfer
                 try {
-                    const response = await fetch('https://backend-transfers.onrender.com/api/transfers/send-transfer', {
+                    const response = await fetch(`${linkToAvalible}/api/transfers/send-transfer`, {
                         method: 'POST',
                         headers: {
                             'Authorization': 'Bearer ' + token,
@@ -200,7 +216,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (new Date(dataSearch.date) < new Date() || !dataSearch.date) {
                 try {
-                    const response = await fetch('https://backend-transfers.onrender.com/api/transfers/ver-transfers', {
+                    const response = await fetch(`${linkToAvalible}/api/transfers/ver-transfers`, {
                         method: 'POST',
                         headers: {
                             'Authorization': 'Bearer ' + token,
@@ -247,7 +263,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                         data.data.forEach((client) => {
                             html += `
-                            <tr>
+                            <tr class="estado ${client.note}">
                                 <td>${client.nameClient}</td>
                                 <td>${client.documentClient}</td>
                                 <td>${client.bankEntity} - ${client.accountType}</td>
@@ -290,12 +306,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (e.target.matches('#btn-update')) {
             e.preventDefault();
-            console.log('Updating....');
             const formUpdate = document.querySelector('.form-update');
             const transfToUpdate = { fact: formUpdate.elements.updReference.value };
 
+            if (!transfToUpdate.fact) {
+                return alert('Por favor ingrese la referencia de la transferencia');
+            }
+
             try {
-                const response = await fetch('https://backend-transfers.onrender.com/api/transfers/update', {
+                const response = await fetch(`${linkToAvalible}/api/transfers/update`, {
                     method: 'POST',
                     headers: {
                         'Authorization': 'Bearer ' + token,
@@ -307,30 +326,171 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
                 }
-
                 const data = await response.json();
-                console.log(data);
-                
                 const searchData = document.querySelector('.data-transfers-get');
+
+                if (data.data === null) {
+                    return searchData.innerHTML = `<p>No se ha encontrado ninguna transferencia con esa referencia</p>`
+                }
+
+                searchData.innerHTML = `
+                    <form class="form-update-transf">
+            <fieldset>
+            <legend>Datos del banco</legend>
+            <div>
+                <label for="banco">Banco:</label>
+                <input type="hidden" name="ref" id="ref" value="${data.data._id}">
+                <input type="hidden" name="user" id="user" value="${data.data.user}">
+                <input type="text" name="bankEntity" id="banco" placeholder="Entidad Bancaria" oninput="soloLetrasYEspacios(this);" value="${data.data.bankEntity}">
+                <label for="tipo">Tipo Cuenta:</label>
+                <select name="accountType" id="tipo">
+                    <option value="${data.data.accountType}">${data.data.accountType}</option>
+                    <option value="Ahorro">Ahorro</option>
+                    <option value="Corriente">Corriente</option>
+                    <option value="Pago Movil">Pago Movil</option>
+                </select>
+            </div>
+            <div>
+                <label for="cuenta">N° Cuenta:</label>
+                <input type="text" name="account" id="cuenta" oninput="formatAccount(this);" value="${data.data.account}">
+            </div>
+            </fieldset>
+            <fieldset>
+            <legend>Datos del cliente</legend>
+            <div class="cliente-sending">
+                <div>
+                    <div>
+                    <label for="nombre">Nombre Completo:</label>
+                    <input type="text" name="nameClient" id="nombre" value="${data.data.nameClient}" oninput="soloLetrasYEspacios(this);">
+                </div>
+                <div>
+                    <label for="doqument">N° Documento:</label>
+                    <input type="text" name="documentClient" id="doqument" value="${data.data.documentClient}" oninput="separardorMiles(this);">
+                </div>
+                </div>
+                <div class="textarea">
+                    <label>Nota:</label>
+                    <textarea name="note" id="note" placeholder="Agregar nota">${data.data.note}</textarea>
+                </div>
+            </div>
+            </fieldset>
+            <fieldset>
+                <legend>Valor</legend>
+                <div>
+                    <label for="valor">Valor B$</label>
+                    <input type="text" name="cashBs" id="valor" value="${data.data.cashBs}" oninput="separardorMiles(this);" readonly>
+                </div>
+            </fieldset>
+            <button type="submit" id="btn-update-send">Actualizar</button>
+        </form>
+                `
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        if (e.target.matches('#btn-update-send')) {
+            e.preventDefault();
+            const formToUpdate = document.querySelector('.form-update-transf');
+            const dataToUpdate = {
+                bankEntity: formToUpdate.elements.bankEntity.value,
+                accountType: formToUpdate.elements.accountType.value,
+                account: formToUpdate.elements.account.value,
+                nameClient: formToUpdate.elements.nameClient.value,
+                documentClient: formToUpdate.elements.documentClient.value,
+                note: formToUpdate.elements.note.value
+            }
+
+            const idUpdate = document.getElementById('ref').value;
+
+            try {
+                const response = await fetch(`${linkToAvalible}/api/transfers/update-transf/${idUpdate}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dataToUpdate)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                const data = await response.json();
+
+                const contenido = `
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        @page {
+            margin: 1cm;
+        }
+        body, div {
+            font-size: 16px; /* Ajusta el tamaño de letra general */
+            font-family: Arial, sans-serif; /* Opcional: cambia la fuente */
+        }
+        .highlight {
+            font-size: 18px; /* Tamaño de letra específico para partes resaltadas */
+        }
+        span{
+            font-size: 18px;
+        }
+    </style>
+    <div>
+        - - - - - - - - - - - - - - - - - - - - - - - - - - - - <br>
+        TRANSFERENCIAS A VENEZUELA <br>
+        - - - - - - - - - - - - - - - - - - - - - - - - - - - - <br>
+        <br>
+        <span class="highlight">ACTUALIZACIÓN DE DATOS</span><br>
+        <br>
+        FECHA ACTUALIZACIÓN: ${new Date().toLocaleString()}<br>
+        FECHA: ${data.detailUpdate.created_at}<br>
+        VENDEDOR: ${data.detailUpdate.user.documento}<br>
+        REF: ${data.detailUpdate.fact} <br>
+        BANCO: <br>
+        ${data.detailUpdate.bankEntity.toUpperCase()} - ${data.detailUpdate.accountType.toUpperCase()}<br>
+        CUENTA N°:<br>
+        <span class="highlight">${data.detailUpdate.account.match(/.{1,4}/g).join('-')}<br></span>
+        NOMBRE: ${data.detailUpdate.nameClient.toUpperCase()}<br>
+        <span>CV: ${Number(data.detailUpdate.documentClient).toLocaleString("es-CO")}</span><br>
+        <br>
+        SOBERANOS <span>B$: ${data.detailUpdate.cashBs}</span><br>
+        <br>
+        - - - - - - - - - - - - - - - - - - - - - - - - - - - - <br>
+        RESP: JOSE TRINIDAD GARCIA <br>
+        WhatsApp: 3124824321 <br>
+        - - - - - - - - - - - - - - - - - - - - - - - - - - - - <br>
+        <br>
+        FIRMA CAJERO:_______________________<br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+`;
+
+                const windowPrint = window.open('', 'Impresion', 'width=600,height=600');
+                windowPrint.document.write(contenido);
+                windowPrint.document.close();
+                windowPrint.print();
+
+                location.reload();
+
 
             } catch (error) {
                 console.log(error);
             }
         }
-    });
-
-
-    document.getElementById('logout').addEventListener('click', (e) => {
-        localStorage.removeItem('authToken');
-        window.location.href = 'index.html'; // Redirigir si no hay token
-        location.reload();
+        if (e.target.matches('.logout')) {
+            localStorage.removeItem('authToken');
+            window.location.href = 'index.html'; // Redirigir si no hay token
+            location.reload();
+        }
     });
 });
-
-
-
-
-
 
 
 /*

@@ -119,10 +119,11 @@ document.addEventListener('DOMContentLoaded', () => {
             password: form.elements.password.value
         }
 
-        //local http://localhost:5000/api/users/login
-        //prod https://backend-transfers.onrender.com/api/users/login
+
+        //let linkAvalible = 'http://localhost:5000'
+        let linkAvalible = 'https://backend-transfers.onrender.com'
         try {
-            const response = await fetch('https://backend-transfers.onrender.com/api/users/login', {
+            const response = await fetch(`${linkAvalible}/api/users/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
