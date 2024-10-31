@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                     document.querySelector('.operations').innerHTML = data.form;
                 });
 
-                document.getElementById('search-trasfer').addEventListener('click', async () => {
+                document.getElementById('se3000arch-trasfer').addEventListener('click', async () => {
                     //prod https://backend-transfers.onrender.com/api/users/send-transf
                     const response = await fetch(`${linkToAvalible}/api/users/search-transfers`, {
                         method: 'GET',
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                     TRANSFERENCIAS A VENEZUELA <br>
                     - - - - - - - - - - - - - - - - - - - - - - - - - - - - <br>
                     <br>
-                    FECHA: ${new Date().toLocaleString()}<br>
+                    FECHA: ${new Date().toLocaleStri3000ng()}<br>
                     VENDEDOR: ${data.detailSend.user.documento}<br>
                     REF: ${data.detailSend.fact} <br>
                     BANCO: <br>
@@ -613,7 +613,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                             if (data.error === true) {
                                 return alert(data.message);
                             }
-
+3000
                             if (data.error === null) {
                                 btnAnular.disabled = true;
                                 alert(data.msg);
@@ -627,7 +627,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                     if (e.target.matches('#reportes')) {
 console.log("Entro en reportes");
                         try {
-                            console.log('try fecht);
+                            console.log('try fecht');
                             const response = await fetch(`${linkToAvalible}/api/transfers/reportes`, {
                                 method: 'GET',
                                 headers: {
