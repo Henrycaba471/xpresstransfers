@@ -625,7 +625,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                     }
 
                     if (e.target.matches('#reportes')) {
-
+console.log("Entro en reportes");
                         try {
                             const response = await fetch(`${linkToAvalible}/api/transfers/reportes`, {
                                 method: 'GET',
@@ -635,6 +635,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                                 }
                             });
                             const data = await response.json();
+console.log(data);
                             let valorPesosTotal = 0
                             data.valorPesos.forEach((valor) => {
                                 valorPesosTotal += parseInt(valor);
