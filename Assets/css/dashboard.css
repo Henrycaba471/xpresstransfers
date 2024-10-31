@@ -89,7 +89,7 @@ main .content-body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    min-height: calc(100vh - 125px);
+    min-height: calc(100vh - 110px);
 }
 
 main .content-body .options {
@@ -209,6 +209,28 @@ form button {
     color: #ffffff;
     background: #194029;
     transition: all 0.5s ease-out;
+}
+.btns-cancel-trans{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+button{
+    font-size: 20px;
+    border-radius: 5px;
+    outline: none;
+    padding: 5px;
+    border: 2px solid #194029;
+    color: #ffffff;
+    background: #194029;
+    transition: all 0.5s ease-out;
+}
+button:hover{
+    cursor: pointer;
+    color: #194029;
+    background: #efefef;
 }
 
 form button:hover {
@@ -356,7 +378,39 @@ table tr:hover {
     color: #efefef;
     cursor: pointer;
 }
+/*Anuladas*/
+tbody .anulada{
+    background-color: #e63a1cb6 !important;
+}
+.anulada:hover{
+    background-color: #e63a1cb6;
+}
+/*Reportes*/
+.reportes-diarios{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.general-report{
+    color: #194029;
+}
+.general-report h1{
+    font-size: 30px;
 
+}
+.total-reports{
+    padding: 20px;
+    text-align: center;
+    background-color: #194029;
+    border-radius: 20px;
+    color: #ecfecf;
+}
+.total-reports h2{
+    font-size: 30px;
+}
 
 .footer {
     font-size: 16px;
