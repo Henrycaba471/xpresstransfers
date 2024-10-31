@@ -634,7 +634,6 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                                     'Content-Type': 'application/json'
                                 }
                             });
-                            console.log('Fetch completo');
                             
                             const data = await response.json();
                             
