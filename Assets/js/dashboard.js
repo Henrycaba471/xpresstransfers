@@ -1,6 +1,6 @@
 
-let linkToAvalible = 'https://backend-transfers.onrender.com'
-//let linkToAvalible = 'http://localhost:5000'
+//let linkToAvalible = 'https://backend-transfers.onrender.com'
+let linkToAvalible = 'http://localhost:5000'
 
 document.addEventListener('DOMContentLoaded', async (e) => {
 
@@ -636,9 +636,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                             });
                             const data = await response.json();
                             let valorPesosTotal = 0
-                            data.valorPesos.forEach((valor) => {
-                                valorPesosTotal += parseInt(valor);
-                            });
+                            
                             const operations = document.querySelector('.operations');
 
                             if (data.enviadas.length <= 0) {
@@ -670,6 +668,10 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                                     </div>
                                 </div>`;
                             }
+                            
+                            data.valorPesos.forEach((valor) => {
+                                valorPesosTotal += parseInt(valor);
+                            });
 
                             operations.innerHTML = `
                                 <div class="general-report">
