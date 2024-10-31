@@ -1,6 +1,6 @@
 
-//let linkToAvalible = 'https://backend-transfers.onrender.com'
-let linkToAvalible = 'http://localhost:5000'
+let linkToAvalible = 'https://backend-transfers.onrender.com'
+//let linkToAvalible = 'http://localhost:5000'
 
 document.addEventListener('DOMContentLoaded', async (e) => {
 
