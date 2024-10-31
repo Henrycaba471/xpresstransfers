@@ -627,6 +627,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                     if (e.target.matches('#reportes')) {
 console.log("Entro en reportes");
                         try {
+                            console.log('try fecht);
                             const response = await fetch(`${linkToAvalible}/api/transfers/reportes`, {
                                 method: 'GET',
                                 headers: {
@@ -634,10 +635,12 @@ console.log("Entro en reportes");
                                     'Content-Type': 'application/json'
                                 }
                             });
-                            const data = await response.json();
-console.log(data);
+                            console.log('Fetch completo');
                             
-
+                            const data = await response.json();
+                            
+                            console.log(data);
+                            
                         } catch (error) {
                             console.log(error);
                         }
