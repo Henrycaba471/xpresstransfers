@@ -393,6 +393,7 @@ tbody .anulada{
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
+    font-size: 17px;
 }
 .general-report{
     color: #194029;

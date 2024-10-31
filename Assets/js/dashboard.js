@@ -1,6 +1,6 @@
 
-let linkToAvalible = 'https://backend-transfers.onrender.com'
-//let linkToAvalible = 'http://localhost:5000'
+//let linkToAvalible = 'https://backend-transfers.onrender.com'
+let linkToAvalible = 'http://localhost:5000'
 
 document.addEventListener('DOMContentLoaded', async (e) => {
 
@@ -635,8 +635,8 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                                 }
                             });
                             const data = await response.json();
+
                             let valorPesosTotal = 0
-                            
                             const operations = document.querySelector('.operations');
 
                             if (data.enviadas.length <= 0) {
@@ -662,16 +662,17 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                                             </table>
                                         </div>
                                         <div class="total-reports">
-                                            <h3>Ventas totales en COP$ </h2>
-                                            <h2>$ ${valorPesosTotal.toLocaleString('es-CO')}</h2>
+                                            <h3>Ventas totales</h2>
+                                            <h2>COP$ ${valorPesosTotal.toLocaleString('es-CO')}</h2>
                                         </div>
                                     </div>
                                 </div>`;
                             }
-                            data.valorPesos.forEach((valor) => {
+
+                            data.valorPesosEnv.forEach((valor) => {
                                 valorPesosTotal += parseInt(valor);
                             });
-                            
+
                             operations.innerHTML = `
                                 <div class="general-report">
                                     <h1>Reporte diario</h1>
@@ -692,8 +693,8 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                                             </table>
                                         </div>
                                         <div class="total-reports">
-                                            <h2>Ventas totales en COP$ </h2>
-                                            <h2>$ ${valorPesosTotal.toLocaleString('es-CO')}</h2>
+                                            <h2>Ventas totales</h2>
+                                            <h2>COP $${valorPesosTotal.toLocaleString('es-CO')}</h2>
                                         </div>
                                     </div>
                                 </div>`;
