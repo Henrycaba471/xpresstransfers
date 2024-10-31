@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                     document.querySelector('.operations').innerHTML = data.form;
                 });
 
-                document.getElementById('se3000arch-trasfer').addEventListener('click', async () => {
+                document.getElementById('search-trasfer').addEventListener('click', async () => {
                     //prod https://backend-transfers.onrender.com/api/users/send-transf
                     const response = await fetch(`${linkToAvalible}/api/users/search-transfers`, {
                         method: 'GET',
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                     TRANSFERENCIAS A VENEZUELA <br>
                     - - - - - - - - - - - - - - - - - - - - - - - - - - - - <br>
                     <br>
-                    FECHA: ${new Date().toLocaleStri3000ng()}<br>
+                    FECHA: ${new Date().toLocaleString()}<br>
                     VENDEDOR: ${data.detailSend.user.documento}<br>
                     REF: ${data.detailSend.fact} <br>
                     BANCO: <br>
@@ -613,7 +613,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                             if (data.error === true) {
                                 return alert(data.message);
                             }
-3000
+
                             if (data.error === null) {
                                 btnAnular.disabled = true;
                                 alert(data.msg);
@@ -624,101 +624,6 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                         }
                     }
 
-                    if (e.target.matches('#reportes')) {
-                        console.log("Entro en reportes");
-                        try {
-                            const response = await fetch(`${linkToAvalible}/api/transfers/reportes`, {
-                                method: 'GET',
-                                headers: {
-                                    'Authorization': 'Bearer ' + token,
-                                    'Content-Type': 'application/json'
-                                }
-                            });
-                            
-                            const data = await response.json();
-                            let valorPesosTotal = 0
-                            
-                            const operations = document.querySelector('.operations');
-
-                            if (data.enviadas.length <= 0) {
-                                return operations.innerHTML = `
-                                <div class="general-report">
-                                    <h1>Reporte diario</h1>
-                                    <div class="reportes-diarios">
-                                        <div class="detalles">
-                                            <table class="reporte-diario">
-                                                <thead>
-                                                    <tr>
-                                                        <th>H de transacción</th>
-                                                        <th>Cliente</th>
-                                                        <th>Valor en Bs</th>
-                                                        <th>Valor en COP $</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="table-body">
-                                                    <tr>
-                                                        <td colspan="4">No se ha realizado ninguna transferencia hoy</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="total-reports">
-                                            <h3>Ventas totales en COP$ </h2>
-                                            <h2>$ ${valorPesosTotal.toLocaleString('es-CO')}</h2>
-                                        </div>
-                                    </div>
-                                </div>`;
-                            }
-                            
-                            data.valorPesos.forEach((valor) => {
-                                valorPesosTotal += parseInt(valor);
-                            });
-
-                            operations.innerHTML = `
-                                <div class="general-report">
-                                    <h1>Reporte diario</h1>
-                                    <div class="reportes-diarios">
-                                        <div class="detalles">
-                                            <table class="reporte-diario">
-                                                <thead>
-                                                    <tr>
-                                                        <th>H de transacción</th>
-                                                        <th>Cliente</th>
-                                                        <th>Valor en Bs</th>
-                                                        <th>Valor en COP $</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="table-body">
-                                                    <!-- Aquí se insertarán las filas dinámicamente -->
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="total-reports">
-                                            <h2>Ventas totales en COP$ </h2>
-                                            <h2>$ ${valorPesosTotal.toLocaleString('es-CO')}</h2>
-                                        </div>
-                                    </div>
-                                </div>`;
-
-                            // Obtener el tbody donde se agregarán las filas
-                            const tableBody = document.querySelector('.table-body');
-
-                            // Recorrer el array `data.enviada` y agregar cada fila a la tabla
-                            data.enviadas.forEach(item => {
-                                const row = document.createElement('tr');
-                                row.innerHTML = `
-                                    <td>${item.created_at.split(',')[1]}</td>
-                                    <td>${item.nameClient}</td>
-                                    <td>${item.cashBs}</td>
-                                    <td>$ ${Number((item.cashBs / 0.009).toFixed(0)).toLocaleString('es-CO')}</td>
-                                `;
-                                tableBody.appendChild(row);
-                            });
-
-                        } catch (error) {
-                            console.log(error);
-                        }
-                    }
                 });
                 // Muestra otros datos como prefieras
             } else {
