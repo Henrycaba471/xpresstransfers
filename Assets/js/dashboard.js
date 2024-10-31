@@ -625,9 +625,8 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                     }
 
                     if (e.target.matches('#reportes')) {
-console.log("Entro en reportes");
+                        console.log("Entro en reportes");
                         try {
-                            console.log('try fecht');
                             const response = await fetch(`${linkToAvalible}/api/transfers/reportes`, {
                                 method: 'GET',
                                 headers: {
