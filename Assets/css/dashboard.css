@@ -412,6 +412,52 @@ tbody .anulada{
 .total-reports h2{
     font-size: 30px;
 }
+/*Stilos para cambio de clave*/
+.form-change-password{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #194029;
+    min-height: 60vh;
+}
+.form-change-password .form-change-pass{
+    border: 2px solid #194029;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #efefef;
+}
+
+.form-change-password .form-change-pass div{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+.form-change-password .form-change-pass div label,
+.form-change-password .form-change-pass div input{
+    font-size: 20px;
+    color: #194029;
+}
+.form-change-password .form-change-pass div input{
+    border: 1px solid #194029;
+    outline: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+.form-change-password .form-change-pass{
+    text-align: center;
+}
+.form-change-password .form-change-pass div input[type="submit"]{
+    align-self: center;
+    margin-top: 20px;
+    transition: all 0.5s ease-out;
+}
+.form-change-password .form-change-pass div input[type="submit"]:hover{
+    background: #194029;
+    color: #efefef;
+    cursor: pointer;
+    box-shadow: 3px 3px 3px 3px #19402986;
+
+}
 
 .footer {
     font-size: 16px;

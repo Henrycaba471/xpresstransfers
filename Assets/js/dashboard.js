@@ -638,6 +638,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 
                             let valorPesosTotal = 0
                             const operations = document.querySelector('.operations');
+                            //console.log(data);
 
                             if (data.enviadas.length <= 0) {
                                 return operations.innerHTML = `
@@ -688,7 +689,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                                                     </tr>
                                                 </thead>
                                                 <tbody class="table-body">
-                                                    <!-- Aquí se insertarán las filas dinámicamente -->
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -713,6 +714,75 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                                 `;
                                 tableBody.appendChild(row);
                             });
+
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    }
+                    if (e.target.matches('#cambiar-pass')) {
+
+                        const operations = document.querySelector('.operations');
+
+                        operations.innerHTML = `<form class="form-change-password">
+                    <div class="form-change-pass">
+                        <img src="Assets/imgs/girar.png" alt="actualizar clave" width="50">
+                        <h2>Cambio de contraseña</h2>
+                        <div class="oldpass">
+                            <label for="oldpassword">Contraseña actual:</label>
+                            <input type="password" name="oldpassword" id="old-password" placeholder="contraseña actual" required>
+                        </div>
+                        <div>
+                            <label for="newPassword">Nueva Contraseña:</label>
+                            <input type="password" id="newPassword" name="newpassword" placeholder="Nueva contraseña"
+                                required>
+                            <label for="confirmNewPassword">Confirmar Contraseña:</label>
+                            <input type="password" id="confirm-new-password" name="newpasswordconfirm"
+                                placeholder="Confirmar Contraseña" required>
+                        </div>
+                        <div>
+                            <input type="submit" id="send-change-pass" value="Cambiar contraseña">
+                        </div>
+                    </div>
+                </form>`
+
+                    }
+
+                    if (e.target.matches('#send-change-pass')) {
+                        e.preventDefault();
+                        const formChangePass = document.querySelector('.form-change-password');
+                        const changePassData = {
+                            oldPass: formChangePass.elements.oldpassword.value,
+                            newPass: formChangePass.elements.newpassword.value,
+                            confirNewPass: formChangePass.elements.newpasswordconfirm.value
+                        }
+                        if (!changePassData.oldPass || !changePassData.newPass || !changePassData.confirNewPass) {
+                            return alert('Por favor completa todos los campos');
+                        }
+                        if (changePassData.newPass !== changePassData.confirNewPass) {
+                            return alert('Las claves no coinciden');
+                        }
+                        console.log(changePassData);
+
+                        try {
+                            const response = await fetch(`${linkToAvalible}/api/users/change-password`, {
+                                method: 'POST',
+                                headers: {
+                                    'Authorization': 'Bearer ' + token,
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(changePassData)
+                            });
+                            const data = await response.json();
+
+                            if (data.error === true) {
+                                return alert(data.msg);
+                            }
+
+                            if (data.error === null) {
+                                alert(data.msg);
+                                localStorage.removeItem('authToken');
+                                return location.reload();
+                            }
 
                         } catch (error) {
                             console.log(error);
