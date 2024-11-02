@@ -288,7 +288,7 @@ select:focus {
     box-shadow: 3px 3px 3px 3px #19402986;
 }
 
-/*Para resiltados dela busqueda*/
+/*Para resultados dela busqueda*/
 .data-transfers-get {
     color: #194029;
 }
@@ -360,7 +360,7 @@ table tr:hover {
     display: block;
 }
 
-.opciones-user ul li {
+.opciones-user ul li{
     list-style: none;
     display: flex;
     align-items: center;
@@ -369,6 +369,10 @@ table tr:hover {
     color: #194029;
     margin: 7px;
     border-radius: 20px;
+}
+a{
+    text-decoration: none;
+    color: #ecfecf;
 }
 .opciones-user ul li img{
     margin: 0 5px;
@@ -413,6 +417,9 @@ tbody .anulada{
     font-size: 30px;
 }
 /*Stilos para cambio de clave*/
+#cambiar-pass img {
+    pointer-events: none;
+}
 .form-change-password{
     display: flex;
     justify-content: center;
@@ -458,6 +465,68 @@ tbody .anulada{
     box-shadow: 3px 3px 3px 3px #19402986;
 
 }
+
+/*Peril style*/
+#profile-user img {
+    pointer-events: none;
+}
+.user-data-profile{
+    display: flex;
+    flex-direction: column;
+    color: #194029;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.user-data-profile h1, .user-data-profile .personal-data h2{
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 10px 0;
+}
+.user-data-profile .personal-data h2{
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 10px 0;
+    text-transform: capitalize;
+}
+.user-data-profile .personal-data {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.user-data-profile .personal-data .other-data-user{
+    border-radius: 20px;
+    box-shadow: 3px 3px 3px 3px #1940292f;
+    padding: 20px;
+}
+.user-data-profile .personal-data img{
+    border: 2px solid #194029a2;
+    border-radius: 50%
+}
+.user-data-profile .personal-data p{
+    font-size: 17px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 7px 0;
+}
+.user-data-profile .personal-data span{
+    display: inline-block;
+    text-transform: uppercase;
+    margin: 5px 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.user-data-profile .personal-data input{
+    font-size: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 10px 0;
+    max-width: 350px;
+}
+.user-data-profile button{
+    align-self: center;
+}
+
+
+
 
 .footer {
     font-size: 16px;

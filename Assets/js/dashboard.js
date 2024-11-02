@@ -19,8 +19,6 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 
     const token = localStorage.getItem('authToken');
 
-    //console.log(token);
-
     if (!token) {
         window.location.href = 'index.html'; // Redirigir si no hay token
     } else {
@@ -747,6 +745,83 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 
                     }
 
+                    if (e.target.matches('#profile-user')) {
+                        const operations = document.querySelector('.operations');
+
+                        try {
+                            const response = await fetch(`${linkToAvalible}/api/users/user`, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': 'Bearer ' + token,
+                                    'Content-Type': 'application/json'
+                                }
+                            });
+                            const data = await response.json();
+                            console.log(data);
+
+                            if (data.error === null) {
+                                return operations.innerHTML = `<div class="user-data-profile">
+                                                    <h1>Perfil del usuario</h1>
+                                                    <div class="personal-data">
+                                                        <div>
+                                                            <img src="${data.serverUrl}/${data.user.image}" alt="Perfil" width="250" height="250"><br>
+                                                            <input type="file" name="profile" id="profile-photo">
+                                                        </div>
+                                                        <div class="other-data-user">
+                                                            <h2>${data.user.name} ${data.user.lastname}</h2>
+                                                            <p>USUARIO: <strong>@${data.user.username}</strong></p>
+                                                            <p>DNI: <strong>${data.user.documento}</strong></p>
+                                                            <span>Cargo: <strong>${data.user.gender === 'mujer' ? 'cajera' : 'cajero'},</strong></span>
+                                                            <span>Sucursal: <strong>0001</strong></span><br>
+                                                            <span>Dirección: <strong>${data.user.address}</strong></span><br>
+                                                            <span>Celular: <strong>${data.user.phone}</strong></span>
+                                                            <span>email: <strong>${data.user.email}</strong></span>
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" id="save-profile-photo">Guardar</button>
+                                                </div>`
+                            } else {
+                                alert(data.msg);
+                                location.reload();
+                            }
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    }
+
+                    if (e.target.matches('#save-profile-photo')) {
+                        const fileInput = document.getElementById('profile-photo');
+
+                        if (fileInput.files.length > 0) {
+                            const formData = new FormData();
+                            formData.append('profile', fileInput.files[0]);
+
+                            try {
+                                const response = await fetch(`${linkToAvalible}/api/users/upload-profile`, {
+                                    method: 'POST',
+                                    headers: {
+                                        Authorization: 'Bearer ' + token
+                                    },
+                                    body: formData
+                                });
+                                const data = await response.json();
+
+                                if (response.ok) {
+                                    console.log('Imagen subida correctamente:', data);
+                                    // Aquí puedes actualizar la UI o realizar otras acciones necesarias
+                                } else {
+                                    console.error('Error al subir la imagen:', data.msg);
+                                }
+
+                            } catch (error) {
+
+                            }
+                            // Aquí puedes proceder con el archivo, como subirlo al servidor
+                        } else {
+                            console.log('No file is selected');
+                        }
+                    }
+
                     if (e.target.matches('#send-change-pass')) {
                         e.preventDefault();
                         const formChangePass = document.querySelector('.form-change-password');
@@ -796,7 +871,10 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                 window.location.href = 'index.html'; // Redirigir si no hay token
             }
         } catch (error) {
-            console.log(error);
+            alert('Se ha presentado un error de conexión, si el error persiste consulte al administrador');
+            localStorage.removeItem('authToken');
+            location.reload();
+            console.log(error.message);
         }
     }
 });
