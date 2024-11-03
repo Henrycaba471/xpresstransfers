@@ -141,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
         } catch (error) {
+            alert('Error de conexión, si el problema persiste consulta al administrador')
             console.log(error);
         }
     });

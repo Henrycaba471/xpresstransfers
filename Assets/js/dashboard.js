@@ -40,7 +40,8 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 
             if (data.status === 200) {
                 // Mostrar los datos del usuario en el dashboard
-                document.getElementById('profile').src = `Assets/imgs/${data.user.gender}.png`
+
+                document.getElementById('profile').src = `${data.serverUrl}/${data.user.profile}`
                 document.getElementById('user').textContent = `${data.user.name} ${data.user.lastname.split(' ')[0]}`;
                 (data.user.gender === 'mujer') ? document.getElementById('rol').textContent = 'Cajera' : document.getElementById('rol').textContent = 'Cajero';
                 document.getElementById('date').textContent = new Date().toLocaleString();
@@ -757,21 +758,21 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                                 }
                             });
                             const data = await response.json();
-                            console.log(data);
+                            //console.log(data);
 
                             if (data.error === null) {
                                 return operations.innerHTML = `<div class="user-data-profile">
                                                     <h1>Perfil del usuario</h1>
                                                     <div class="personal-data">
                                                         <div>
-                                                            <img src="${data.serverUrl}/${data.user.image}" alt="Perfil" width="250" height="250"><br>
+                                                            <img src="${data.serverUrl}/${data.user.image}" alt="Perfil" width="200" height="200"><br>
                                                             <input type="file" name="profile" id="profile-photo">
                                                         </div>
                                                         <div class="other-data-user">
                                                             <h2>${data.user.name} ${data.user.lastname}</h2>
                                                             <p>USUARIO: <strong>@${data.user.username}</strong></p>
                                                             <p>DNI: <strong>${data.user.documento}</strong></p>
-                                                            <span>Cargo: <strong>${data.user.gender === 'mujer' ? 'cajera' : 'cajero'},</strong></span>
+                                                            <span>Cargo: <strong>${(data.user.gender === 'mujer') ? 'cajera' : 'cajero'},</strong></span>
                                                             <span>Sucursal: <strong>0001</strong></span><br>
                                                             <span>Dirección: <strong>${data.user.address}</strong></span><br>
                                                             <span>Celular: <strong>${data.user.phone}</strong></span>
@@ -791,6 +792,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 
                     if (e.target.matches('#save-profile-photo')) {
                         const fileInput = document.getElementById('profile-photo');
+                        const operations = document.querySelector('.operations')
 
                         if (fileInput.files.length > 0) {
                             const formData = new FormData();
@@ -807,8 +809,28 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                                 const data = await response.json();
 
                                 if (response.ok) {
-                                    console.log('Imagen subida correctamente:', data);
-                                    // Aquí puedes actualizar la UI o realizar otras acciones necesarias
+                                    alert('Se ha actualizado la foto de perfil');
+                                    operations.innerHTML = `<div class="user-data-profile">
+                                                    <h1>Perfil del usuario</h1>
+                                                    <div class="personal-data">
+                                                        <div>
+                                                            <img src="${data.serverUrl}/${data.user.image}" alt="Perfil" width="200" height="200"><br>
+                                                            <input type="file" name="profile" id="profile-photo">
+                                                        </div>
+                                                        <div class="other-data-user">
+                                                            <h2>${data.user.name} ${data.user.lastname}</h2>
+                                                            <p>USUARIO: <strong>@${data.user.username}</strong></p>
+                                                            <p>DNI: <strong>${data.user.documento}</strong></p>
+                                                            <span>Cargo: <strong>${(data.user.gender === 'mujer') ? 'cajera' : 'cajero'},</strong></span>
+                                                            <span>Sucursal: <strong>0001</strong></span><br>
+                                                            <span>Dirección: <strong>${data.user.address}</strong></span><br>
+                                                            <span>Celular: <strong>${data.user.phone}</strong></span>
+                                                            <span>email: <strong>${data.user.email}</strong></span>
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" id="save-profile-photo">Guardar</button>
+                                                </div>`
+
                                 } else {
                                     console.error('Error al subir la imagen:', data.msg);
                                 }
@@ -818,7 +840,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                             }
                             // Aquí puedes proceder con el archivo, como subirlo al servidor
                         } else {
-                            console.log('No file is selected');
+                            alert('No hay cambios por guardar')
                         }
                     }
 
@@ -836,7 +858,6 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                         if (changePassData.newPass !== changePassData.confirNewPass) {
                             return alert('Las claves no coinciden');
                         }
-                        console.log(changePassData);
 
                         try {
                             const response = await fetch(`${linkToAvalible}/api/users/change-password`, {

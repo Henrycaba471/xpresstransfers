@@ -11,7 +11,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #ecfecf;
 }
 
 .header {
@@ -49,20 +49,35 @@ body {
     text-decoration: none;
     border-bottom: 2px solid #9ACB56;
 }
-
+.header .navbar #login {
+    align-self: center;
+    background-color: #194029;
+    border-radius: 20px;
+    color: #efefef;
+    padding: 7px 15px;
+    margin: 0;
+    transition: all 0.5s ease-out;
+    border: 2px solid transparent;
+}
+.header .navbar #login:hover {
+    background-color: #ecfecf;
+    color: #194029;
+    border: 2px solid #194029;
+}
 h1 {
-    color: #333;
+    color: #ecfecf;
     text-align: center;
     padding: 0.5em;
 }
 
 .start {
-    background: #9acb5670;
+    background: #194029;
     padding: 0 20px;
+    color: #ecfecf;
 }
 
 .start>p {
-    color: #194029;
+    color: #ecfecf;
     font-size: 18px;
 }
 
@@ -75,7 +90,7 @@ h1 {
 }
 
 article {
-    background-color: #fff;
+    background-color: #ecfecf;
     padding: 20px;
     margin: 10px 0;
     border-radius: 8px;
@@ -85,11 +100,11 @@ article {
 }
 
 h2 {
-    color: #9ACB56;
+    color: #194029;
 }
 
 p {
-    color: #555;
+    color: #194029;
     line-height: 1.6;
 }
 
@@ -100,7 +115,7 @@ p {
 
 .conversor p {
     font-size: 20px;
-    color: #333;
+    color: #194029;
     padding: 20px;
 }
 
@@ -482,8 +497,9 @@ p {
     color: #949393;
 }
 
-.footer .copyright p{
+.footer .copyright  p{
     max-width: 500px;
+    color: #949393;
 }
 
 /** Creando el login */
