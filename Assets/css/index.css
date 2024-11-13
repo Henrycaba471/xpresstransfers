@@ -506,80 +506,98 @@ p {
 .login-div{
     display: none;
     position: fixed;
-    top: 80px;
-    right: 30px;
+    top: 60px;
+    right: 10px;
 }
 .login{
     display: flex;
     flex-direction: column;
-    border: 2px solid #9ACB56;
-    max-width: 350px;
-    padding: 20px;
-    background: #194029;
+    border: 2px solid #194029;
+    max-width: 320px;
+    padding: 10px;
+    background: #ecfecff3;
     border-radius: 20px;
 }
 .login img{
+    width: 100px;
     align-self: center;
-    padding: 20px;
 }
 .login h3{
     align-self: center;
     padding: 20px;
-    font-size: 28px;
-    color: #9ACB56;
+    font-size: 18px;
+    color: #194029;
 }
 .login input {
     background: transparent;
     outline: none;
-    border: 2px solid #9ACB56;
+    border: 2px solid #194029;
     max-width: 300px;
-    font-size: 23px;
+    font-size: 17px;
     padding: 5px;
     margin-bottom: 10px;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
     font-weight: bold;
-    color: #9ACB56;
+    color: #194029;
 }
 
 .login label {
     font-weight: bold;
-    background-color: #9ACB56;
+    background-color: #194029;
     padding: 5px;
     border-top-right-radius: 8px;
     max-width: 300px;
     border-top-left-radius: 8px;
-    color: #194029;
+    color: #ecfecf;
 }
 .login button{
     align-self: center;
-    border: 2px solid #9ACB56;
-    border-radius: 25px;
-    padding: 10px 25px;
-    font-size: 20px;
+    border: 2px solid #194029;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 17px;
     font-weight: bold;
     transition: all 0.5s ease-out;
-    color: #194029;
+    color: #ecfecf;
     margin: 10px;
-    background: #9ACB56;
-    width: 180px;
+    background: #194029;
+    width: 160px;
 }
 .login span {
+    width: 20px;
+    height: 20px;
     right: 10px;
-    font-size: 25px;
-    font-weight: bold;
-    color: #9ACB56;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #194029;
     position: absolute;
     top: 5px;
     cursor: pointer;
+    border: 1px solid #949393;
+    border-radius: 50%;
 }
-
+.login span:hover {
+    color: #949393;
+    
+}
+.login a{
+    font-size: 14px;
+    color: #194029;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.login a:hover{
+    font-size: 14px;
+    color: #194029ab;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
 .login-active{
     display: block;
 }
 .login button:hover {
     cursor: pointer;
-    border: 2px solid #9ACB56;
-    background: #194029;
-    color: #9ACB56;
+    border: 2px solid #194029;
+    background: #efefef;
+    color: #194029;
 }
