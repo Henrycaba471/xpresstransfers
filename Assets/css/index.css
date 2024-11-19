@@ -580,9 +580,9 @@ p {
 }
 .login span:hover {
     color: #949393;
-    
 }
 .login a{
+    text-align: right;
     font-size: 14px;
     color: #194029;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -596,6 +596,90 @@ p {
     display: block;
 }
 .login button:hover {
+    cursor: pointer;
+    border: 2px solid #194029;
+    background: #efefef;
+    color: #194029;
+}
+
+/*Reset password*/
+.forgot-pass-div{
+    width: 320px;
+    border: 2px solid #194029;
+    margin: 5px;
+    border-radius: 20px;
+    background: #ecfecf;
+}
+.reset-password{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 320px;
+    position: relative;
+}
+.reset-password p,
+.reset-password h4{
+    color: #194029;
+    text-align: center;
+    padding: 5px;
+}
+.reset-password img{
+    padding: 15px 0;
+    width: 100px;
+}
+.reset-password label{
+    width: 270px;
+    display: inline-block;
+    font-weight: bold;
+    background-color: #194029;
+    padding: 5px;
+    border-top-right-radius: 8px;
+    max-width: 300px;
+    border-top-left-radius: 8px;
+    color: #ecfecf;
+}
+.reset-password input{
+    background: transparent;
+    outline: none;
+    border: 2px solid #194029;
+    width: 270px;
+    font-size: 17px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    font-weight: bold;
+    color: #194029;
+}
+.reset-password button{
+    align-self: center;
+    border: 2px solid #194029;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    transition: all 0.5s ease-out;
+    color: #ecfecf;
+    margin: 10px;
+    background: #194029;
+    width: 150px;
+}
+.reset-password span{
+    width: 20px;
+    height: 20px;
+    right: 10px;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #da1c1c;
+    position: absolute;
+    top: 5px;
+    cursor: pointer;
+    border: 1px solid #949393;
+    border-radius: 50%;
+}
+.reset-password button:hover {
     cursor: pointer;
     border: 2px solid #194029;
     background: #efefef;

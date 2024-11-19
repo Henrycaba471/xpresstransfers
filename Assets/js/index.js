@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    //let linkAvalible = 'http://localhost:5000'
+    let linkAvalible = 'https://backend-transfers.onrender.com'
 
     const valorPesos = document.getElementById('cop');
     const valorBolivares = document.getElementById('ves');
@@ -119,9 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
             password: form.elements.password.value
         }
 
-
-        //let linkAvalible = 'http://localhost:5000'
-        let linkAvalible = 'https://backend-transfers.onrender.com'
         try {
             const response = await fetch(`${linkAvalible}/api/users/login`, {
                 method: 'POST',
@@ -146,6 +145,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    document.addEventListener('click', async (e) => {
+        if(e.target.matches('#close')){
+            location.reload();
+        }
+
+        if(e.target.matches('.forgot-password')){
+            e.preventDefault();
+            const setFormGetPass = document.querySelector('.login-div');
+            try {
+                const response = await fetch(`${linkAvalible}/api/users/forgot-password`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const result = await response.json();
+                setFormGetPass.innerHTML = result.form;
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        if (e.target.matches('#btn-reset-pass')) {
+            e.preventDefault();
+            const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const dataEmail = document.getElementById('email').value;
+
+            if (dataEmail === '', !regexEmail.test(dataEmail)) {
+                return alert('El correo ingresado no es valido');
+            }
+
+            const dataSendEmail = {
+                email: dataEmail
+            }
+
+            try {
+                const response = await fetch(`${linkAvalible}/api/users/reset-password`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dataSendEmail)
+                });
+                const result = await response.json();
+                console.log(result);
+                
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    });
 
     /*
         const btnLogin = document.getElementById('btn-login');
