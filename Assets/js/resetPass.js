@@ -1,5 +1,5 @@
-let linkAvalible = 'https://backend-transfers.onrender.com'
-//http://localhost:5000
+//let linkAvalible = 'https://backend-transfers.onrender.com';
+let linkAvalible = 'http://localhost:5000';
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token'); // El token se obtiene directamente porque está después del `?`.
@@ -35,8 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const data = await response.json();
-            console.log(data);
-            
+            //console.log(data);
+            alert(data.msg);
+            window.location.href = 'http://127.0.0.1:5500/index.html';
+
         } catch (error) {
             console.error('Error:', error);
             alert('Hubo un problema al procesar tu solicitud');

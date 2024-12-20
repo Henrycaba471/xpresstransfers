@@ -57,6 +57,9 @@ main .header .user:hover {
 main .header .user img {
     border-radius: 50%;
     border: 1px solid #19402994;
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
 }
 
 main .header .user span {
@@ -523,6 +526,41 @@ tbody .anulada{
 }
 .user-data-profile button{
     align-self: center;
+}
+
+/**Send email */
+.send-mail{
+    padding: 10px
+}
+.send-mail h1{
+    color: #194029;
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.send-mail label{
+    padding-top: 15px;
+    color: #194029;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    max-width: 300px;
+}
+.send-mail input{
+    max-width: 300px;
+    color: #194029;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    border-radius: 5px;
+    padding: 3px 7px;
+}
+.send-mail textarea{
+    resize: none;
+    height: 150px;
+    color: #194029;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    border-radius: 5px;
+    padding: 3px 7px;
 }
 
 .footer {

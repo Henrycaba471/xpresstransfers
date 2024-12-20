@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    //let linkAvalible = 'http://localhost:5000'
-    let linkAvalible = 'https://backend-transfers.onrender.com'
+    let linkAvalible = 'http://localhost:5000'
+    //let linkAvalible = 'https://backend-transfers.onrender.com'
 
     const valorPesos = document.getElementById('cop');
     const valorBolivares = document.getElementById('ves');
@@ -146,11 +146,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.addEventListener('click', async (e) => {
-        if(e.target.matches('#close')){
+        if (e.target.matches('#close')) {
             location.reload();
         }
 
-        if(e.target.matches('.forgot-password')){
+        if (e.target.matches('.forgot-password')) {
             e.preventDefault();
             const setFormGetPass = document.querySelector('.login-div');
             try {
@@ -189,8 +189,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify(dataSendEmail)
                 });
                 const result = await response.json();
-                console.log(result);
-                
+                alert(result.message);
+                location.reload();
             } catch (error) {
                 console.log(error);
             }

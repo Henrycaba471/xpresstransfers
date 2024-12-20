@@ -1,6 +1,6 @@
 
-let linkToAvalible = 'https://backend-transfers.onrender.com'
-//let linkToAvalible = 'http://localhost:5000'
+//let linkToAvalible = 'https://backend-transfers.onrender.com';
+let linkToAvalible = 'http://localhost:5000';
 
 document.addEventListener('DOMContentLoaded', async (e) => {
 
@@ -884,6 +884,47 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                             console.log(error);
                         }
                     }
+
+                    if (e.target.matches('#support')) {
+                        //console.log('Soporte');
+                        const operations = document.querySelector('.operations');
+                        try {
+                            const response = await fetch(`${linkToAvalible}/api/users/support-contact`, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': 'Bearer ' + token,
+                                    'Content-Type': 'application/json'
+                                }
+                            });
+                            const data = await response.json();
+                            operations.innerHTML = `<form action="" class="send-mail">
+                                                        <h1>Contactar mesa de ayuda</h1>
+                                                        <label for="from">De</label>
+                                                        <input type="email" name="emailuser" id="emailuser" value="${data.email}" readonly>
+                                                        <label for="destinatario">Para</label>
+                                                        <input type="email" name="email" id="email-mesa-ayuda" value="xpresstransferss@gmail.com" readonly>
+                                                        <label for="message">Mensaje</label>
+                                                        <textarea name="textarea" id="mensaje"></textarea>
+                                                        <button id="send-mail">Enviar email</button>
+                                                    </form>`
+
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    }
+
+                    if (e.target.matches('#send-mail')) {
+                        e.preventDefault();
+                        //console.log('Sending mail');
+                        const mailTo = document.getElementById('email-mesa-ayuda').value;
+                        const message = document.getElementById('mensaje').value;
+                        if (message.length < 15) {
+                            return alert('El mensaje debe contner al menos 15 caracteres');
+                        }
+                        const url = `mailto:${mailTo}?subject=Error en sistema&body=${message}`;
+                        window.open(url);
+                    }
+
 
                 });
                 // Muestra otros datos como prefieras
