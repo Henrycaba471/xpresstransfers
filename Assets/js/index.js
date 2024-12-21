@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let linkAvalible = 'http://localhost:5000'
-    //let linkAvalible = 'https://backend-transfers.onrender.com'
+    //let linkAvalible = 'http://localhost:5000'
+    let linkAvalible = 'https://backend-transfers.onrender.com'
 
     const valorPesos = document.getElementById('cop');
     const valorBolivares = document.getElementById('ves');

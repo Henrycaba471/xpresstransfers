@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             //console.log(data);
             alert(data.msg);
-            window.location.href = 'http://127.0.0.1:5500/index.html';
+            window.location.href = 'https://henrycaba471.github.io/xpresstransfers/index.html';
 
         } catch (error) {
             console.error('Error:', error);
