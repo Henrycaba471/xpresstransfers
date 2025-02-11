@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     valores.forEach((el) => {
         el.addEventListener("click", () => {
             valorPesos.value = el.textContent.replace(/[^0-9]/g, ''),
-                valorBolivares.value = (valorPesos.value * 0.009).toFixed(0);
+                valorBolivares.value = (valorPesos.value * 0.01).toFixed(0);
         });
     });
 
