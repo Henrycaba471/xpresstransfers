@@ -709,7 +709,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
                                     <td>${item.created_at.split(',')[1]}</td>
                                     <td>${item.nameClient}</td>
                                     <td>${item.cashBs}</td>
-                                    <td>$ ${Number((item.cashBs / 0.009).toFixed(0)).toLocaleString('es-CO')}</td>
+                                    <td>$ ${Number((item.cashBs / 0.01).toFixed(0)).toLocaleString('es-CO')}</td>
                                 `;
                                 tableBody.appendChild(row);
                             });
