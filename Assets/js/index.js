@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return alert('Debes ingresar un monto')
         }
 
-        valorBolivares.value = (valorPesos.value * 0.009).toFixed(0);
+        valorBolivares.value = (valorPesos.value * 0.01).toFixed(0);
     });
 
     valores.forEach((el) => {
